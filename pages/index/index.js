@@ -1,3 +1,4 @@
+var app = getApp()
 // pages/index/index.js
 Page({
 
@@ -11,7 +12,12 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function () {
+        wx.request({
+            url: `${app.globalData.url}/banner`,
+            success: (res) => { console.log(res);},
+            fail: (error) => { console.log(error); }
+        })
 
     },
 
