@@ -8,6 +8,8 @@
     "navigationBarTitleText": "云音乐",
     "navigationBarTextStyle":"white"
   },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }
