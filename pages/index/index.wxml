@@ -1,6 +1,6 @@
-<view>
+<view class="indexContainer">
     <!-- 轮播图区域 -->
-    <swiper interval='3000' indicator-dots indicator-color='ivory' circular autoplay indicator-active-color='#d43c33'>
+    <swiper class="banners" interval='3000' indicator-dots indicator-color='ivory' circular autoplay indicator-active-color='#d43c33'>
         <swiper-item>
             <image src="/static/images/personal/bgImg.jpg" />
         </swiper-item>
@@ -17,4 +17,12 @@
             <image src="/static/images/personal/bgImg.jpg" />
         </swiper-item>
     </swiper>
+
+    <!-- 五个图标导航区域 -->
+    <view class="navContainer">
+        <view class="navItem">
+        <text>测试</text>
+        <text></text>
+        </view>
+    </view>
 </view>
