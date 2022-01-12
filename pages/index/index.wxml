@@ -41,4 +41,48 @@
             <text>直播</text>
         </view>
     </view>
+
+    <!-- 推荐歌曲区域 -->
+    <view class="recommendContainer">
+        <text class="recommendContainerSong">推荐歌曲</text>
+        <view class="header">
+            <text>为你精心推荐</text>
+            <text class="more">查看更多</text>
+        </view>
+
+        <scroll-view class="scorllContainer" scroll-x enable-flex>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/personal/bgImg.jpg" />
+                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            </view>
+        </scroll-view>
+    </view>
 </view>
