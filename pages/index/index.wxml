@@ -1,6 +1,6 @@
 <view>
     <!-- 轮播图区域 -->
-    <swiper indicator-dots indicator-color='ivory' circular autoplay indicator-active-color='#d43c33'>
+    <swiper 	interval='3000' indicator-dots indicator-color='ivory' circular autoplay indicator-active-color='#d43c33'>
         <swiper-item>
             <image src="/static/images/personal/bgImg.jpg" />
         </swiper-item>
