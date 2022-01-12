@@ -17,4 +17,5 @@
             <image src="/static/images/personal/bgImg.jpg" />
         </swiper-item>
     </swiper>
+    
 </view>
