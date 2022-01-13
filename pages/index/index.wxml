@@ -1,20 +1,8 @@
 <view class="indexContainer">
     <!-- 轮播图区域 -->
     <swiper class="banners" interval='3000' indicator-dots indicator-color='ivory' circular autoplay indicator-active-color='#d43c33'>
-        <swiper-item>
-            <image src="/static/images/personal/bgImg.jpg" />
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/personal/bgImg.jpg" />
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/personal/bgImg.jpg" />
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/personal/bgImg.jpg" />
-        </swiper-item>
-        <swiper-item>
-            <image src="/static/images/personal/bgImg.jpg" />
+        <swiper-item bindtap="toCurrPage(i.url)" wx:for="{{banners}}" wx:key="bannerId" wx:for-item="i">
+            <image src="{{i.pic}}" />
         </swiper-item>
     </swiper>
 
@@ -51,37 +39,9 @@
         </view>
 
         <scroll-view class="scorllContainer" scroll-x enable-flex>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
-            </view>
-            <view class="scrollItem">
-                <image src="/static/images/personal/bgImg.jpg" />
-                <text>兰花指捻红尘似水，三尺红台万事入歌吹，唱别久悲不成悲，十分红处竟成灰，愿谁记得谁，最好的年岁，</text>
+            <view wx:for="{{recommendSongs}}" wx:key="index" class="scrollItem">
+                <image src="{{item.picUrl}}" />
+                <text>{{item.name}}</text>
             </view>
         </scroll-view>
     </view>

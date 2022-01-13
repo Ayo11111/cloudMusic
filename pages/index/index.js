@@ -1,24 +1,36 @@
 var app = getApp()
 // pages/index/index.js
+import request from '../../utils/reques'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        banners: [],
+        recommendSongs: []
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function () {
-        wx.request({
-            url: `${app.globalData.url}/banner`,
-            success: (res) => { console.log(res);},
-            fail: (error) => { console.log(error); }
-        })
+    onLoad:  function () {
+        this.requestFun()
+    },
 
+     // 发送请求的接口
+    async requestFun(){
+          // 轮播图请求接口
+          let { banners } = await request('/banner', { type: 2 })
+          this.setData({
+              banners: banners
+          })
+  
+          // 获取推荐歌单数据
+          let { result } = await request('/personalized', { limit: 20 })
+          this.setData({
+              recommendSongs: result
+          })
     },
 
     /**
@@ -67,6 +79,10 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function () {
+
+    },
+
+    toCurrPage(url) {
 
     }
 })

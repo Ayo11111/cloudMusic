@@ -26,9 +26,5 @@ App({
    */
   onError: function (msg) {
 
-  },
-
-  globalData: {
-    url: 'http://localhost:3000'
   }
 })
