@@ -69,4 +69,38 @@
     overflow: hidden;
 }
 
-/*  */
+/* 排行榜区域 */
+.listSwiper {
+    height: 400rpx;
+}
+
+.swiperItem {
+    width: 96%;
+    padding-left: 20rpx;
+    background: #fbfbfd;
+}
+
+.imageContainer {
+    display: flex;
+    margin-top: 12rpx;
+}
+
+.listName {
+    font-size: 26rpx;
+}
+
+.imageContainer image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 20rpx;
+}
+
+.imageContainer .songName {
+    margin-left: 50rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
