@@ -1,0 +1,7 @@
+<view class="headerContainer">
+    <text class="recommendContainerSong">{{title}}</text>
+    <view class="header">
+        <text>{{nav}}</text>
+        <text class="more">查看更多</text>
+    </view>
+</view>

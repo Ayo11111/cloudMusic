@@ -40,31 +40,14 @@
 /* 推荐歌曲区域 */
 .recommendContainer {
     margin-top: 50rpx;
-    margin-left: 20rpx;
 }
 
-.recommendContainerSong {
-    font-size: 30rpx;
-    color: #827e82;
-}
-
-.header {
-    margin-top: 15rpx;
-    font-size: 26rpx;
-}
-
-.more {
-    display: block;
-    float: right;
-    margin-right: 20rpx;
-    border: 1px solid #333;
-    padding: 5rpx 15rpx;
-    border-radius: 30rpx;
-}
 
 .scorllContainer {
     display: flex;
     margin-top: 30rpx;
+    height: 300rpx;
+    margin-left: 20rpx
 }
 
 .scrollItem {
