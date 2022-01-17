@@ -1,8 +1,9 @@
 {
     "pages": [
+        "pages/personal/personal",
         "pages/index/index",
         "pages/video/video",
-        "pages/personal/personal"
+        "pages/login/login"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -11,13 +12,10 @@
         "navigationBarTextStyle": "white"
     },
     "sitemapLocation": "sitemap.json",
-    "usingComponents": {
-        "van-icon": "@vant/weapp/icon/index"
-    },
     "tabBar": {
         "color": "#333",
-        "selectedColor":"#d43c33",
-        "backgroundColor":"#fff",
+        "selectedColor": "#d43c33",
+        "backgroundColor": "#fff",
         "list": [
             {
                 "pagePath": "pages/index/index",
