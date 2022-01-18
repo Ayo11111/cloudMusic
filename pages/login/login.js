@@ -1,5 +1,6 @@
 // pages/login/login.js
 import request from '../../utils/reques'
+import { validationTips } from '../../utils/selfUtils'
 Page({
 
     /**
@@ -10,42 +11,31 @@ Page({
         password: ''
     },
 
-    // 提示函数
-    validationTips(title, icon='sucess') {
-        wx.showToast({
-            title,
-            icon
-        })
-    },
-
     async login() {
         let { phone, password } = this.data
         // 前端验证
         if (!phone) {
-            console.log('1');
-            this.validationTips('手机号不能为空', 'error')
+            validationTips('手机号不能为空', 'error')
             return
         }
         let phoneReg = /^1[3-9]\d{9}$/
         if (!phoneReg.test(phone)) {
-            console.log('2');
-            this.validationTips('手机号格式错误', 'error')
+            validationTips('手机号格式错误', 'error')
             return
         }
         if (!password) {
-            console.log('3');
-            this.validationTips('密码不能为空', 'error')
+            validationTips('密码不能为空', 'error')
             return
         }
+
         // 后端验证
-        let results = await request('/login/cellphone',{phone,password})
-        console.log(results);
+        let results = await request('/login/cellphone', { phone, password })
         if (results.code === 200) {
-            this.validationTips('登录成功')
-        }else if (results.code === 502) {
-            this.validationTips('密码错误','error')
-        }else {
-            this.validationTips('登录失败，请重试','error')
+            validationTips('登录成功')
+        } else if (results.code === 502) {
+            validationTips('密码错误', 'error')
+        } else {
+            validationTips('登录失败，请重试', 'error')
         }
     },
 
