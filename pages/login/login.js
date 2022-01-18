@@ -32,6 +32,12 @@ Page({
         let results = await request('/login/cellphone', { phone, password })
         if (results.code === 200) {
             validationTips('登录成功')
+
+            wx.setStorageSync('userInfo', results.profile)
+
+            wx.switchTab({
+              url: '/pages/personal/personal',
+            })
         } else if (results.code === 502) {
             validationTips('密码错误', 'error')
         } else {

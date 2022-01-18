@@ -1,6 +1,7 @@
 let startY = 0 // 手指起始的坐标
 let moveY = 0  // 手指移动的坐标 
 let moveDistance = 0 //手指移动的距离
+import request from '../../utils/reques'
 Page({
 
     /**
@@ -8,20 +9,35 @@ Page({
      */
     data: {
         coverTransform: 'translateY(0)',
-        coveTransition: ''
+        coveTransition: '',
+        userInfo: {},
+        recentPlayList: {} //最近播放记录
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let userInfo = wx.getStorageSync('userInfo')
+        if (userInfo) {
+            this.setData({
+                userInfo
+            })
+            this.getRecentPlayList(this.data.userInfo.userId)
+        }
+    },
 
+    async getRecentPlayList(userId) {
+        let recentPlayList = await request('/user/record', { uid: userId, type: 1 })
+        this.setData({
+            recentPlayList: recentPlayList.weekData
+        })
     },
 
     // 手指点击时的回调
     handleTouchStart(event) {
         this.setData({
-            coveTransition:''
+            coveTransition: ''
         })
         // 获取手指的起始坐标
         startY = event.touches[0].clientY
@@ -51,6 +67,16 @@ Page({
             coverTransform: 'translateY(0)',
             coveTransition: 'transform 1s linear'
         })
+    },
+
+    // 去登录页
+    toLogin() {
+        if (this.data.userInfo === {}) {
+            wx.redirectTo({
+                url: '/pages/login/login'
+            })
+        }
+
     },
 
     /**
