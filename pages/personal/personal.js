@@ -71,12 +71,9 @@ Page({
 
     // 去登录页
     toLogin() {
-        if (this.data.userInfo === {}) {
-            wx.redirectTo({
-                url: '/pages/login/login'
-            })
-        }
-
+        wx.redirectTo({
+            url: '/pages/login/login'
+        })
     },
 
     /**

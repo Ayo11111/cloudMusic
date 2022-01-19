@@ -1,18 +1,35 @@
-// pages/video/video.js
+import request from '../../utils/reques'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        videoGroupList: [], // 导航条数据
+        navId: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.getVideoGroupList()
+    },
 
+    // 获取数据
+    async getVideoGroupList() {
+        let videoGroupListData = await request('/video/group/list')
+        this.setData({
+            videoGroupList: videoGroupListData.data.slice(0,14),
+            navId: videoGroupListData.data[0].id
+        })
+    },
+
+    // 导航点击事件，动态绑定类名
+    navTap(event) {
+        this.setData({
+            navId: event.currentTarget.dataset.id
+        })
     },
 
     /**
