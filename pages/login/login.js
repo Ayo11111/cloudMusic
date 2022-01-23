@@ -29,10 +29,9 @@ Page({
         }
 
         // 后端验证
-        let results = await request('/login/cellphone', { phone, password })
+        let results = await request('/login/cellphone', { phone, password, isLogin:true})
         if (results.code === 200) {
             validationTips('登录成功')
-
             wx.setStorageSync('userInfo', results.profile)
 
             wx.switchTab({
