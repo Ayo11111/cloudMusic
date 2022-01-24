@@ -8,7 +8,8 @@ Page({
         videoGroupList: [], // 导航条数据
         navId: '',
         videoList: [],
-        videoId:''
+        videoId: '',
+        videoUpdateTime: [] // 存放视频存在数据
     },
 
     /**
@@ -31,10 +32,38 @@ Page({
         // 创建控制video的实例对象
         this.videoContext = wx.createVideoContext(vid)
         this.setData({
-            videoId:vid
+            videoId: vid
         })
         // this.vid = vid
 
+    },
+
+    // 视频播放过程中的回调
+    handleUpdate(event) {
+        let upDateObj = { vid: event.currentTarget.id, currentTime: event.detail.currentTime }
+        let { videoUpdateTime } = this.data
+        /*
+            判断之前有没有播放记录
+
+            这里就反应出 fine() 方法返回的结果内存指向依然是 原数组里对象 所指向的内存地址
+            所有这里返回的是浅拷贝的数据
+        */
+        let videoItem = videoUpdateTime.find(item => item.vid === upDateObj.vid)
+        if (videoItem) {
+            videoItem.currentTime = event.detail.currentTime
+        } else {
+            videoUpdateTime.push(upDateObj)
+        }
+
+        this.setData({
+            videoUpdateTime
+        })
+    },
+
+    // 视频播放结束时的回调
+    handleEnd(event) {
+        let { videoUpdateTime } = this.data
+        videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id), 1)
     },
 
     // 获取数据
