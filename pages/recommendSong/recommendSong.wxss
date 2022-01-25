@@ -23,3 +23,54 @@
 .header .date .day{
     font-size: 50rpx;
 }
+
+/* 列表区域 */
+.listContainer{
+    position: relative;
+    top: -20rpx;
+    border-radius: 30rpx;
+    padding:0 20rpx;
+    background-color: #fff;
+}
+
+.listHeader{
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.choseMore{
+    float: right;
+}
+
+.scrollItem {
+    display: flex;
+    height: 80rpx;
+}
+
+.scrollItem image {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 8rpx;
+}
+
+.musicInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+}
+
+.musicInfo text {
+    line-height: 40rpx;
+    font-size: 24rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scrollItem .iconfont{
+    position: absolute;
+    right: 0;
+    line-height: 80rpx;
+    width: 80rpx;
+    text-align: right;
+}
