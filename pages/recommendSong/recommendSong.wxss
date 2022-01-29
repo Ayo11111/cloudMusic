@@ -45,6 +45,11 @@
 .scrollItem {
     display: flex;
     height: 80rpx;
+    margin:20rpx 0;
+}
+
+.listScroll {
+    height: calc(100vh - 380rpx);
 }
 
 .scrollItem image {
