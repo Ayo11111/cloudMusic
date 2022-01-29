@@ -34,7 +34,12 @@ Page({
         this.setData({
             videoId: vid
         })
-        // this.vid = vid
+        
+        let { videoUpdateTime } = this.data
+        let videoItem = videoUpdateTime.find(item => item.vid === vid)
+        if (videoItem) {
+            this.videoContext.seek(videoItem.currentTime)
+       }
 
     },
 
@@ -64,6 +69,10 @@ Page({
     handleEnd(event) {
         let { videoUpdateTime } = this.data
         videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id), 1)
+        // 不要忘了更新状态
+        this.setData({
+            videoUpdateTime
+        })
     },
 
     // 获取数据
