@@ -32,7 +32,7 @@
 }
 
 .disAnimition {
-  animation: disc 5s 1s linear infinite;
+  animation: disc 10s 1s linear infinite;
 }
 
 @keyframes disc {

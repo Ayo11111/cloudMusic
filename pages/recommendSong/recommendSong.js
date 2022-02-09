@@ -40,6 +40,17 @@ Page({
         })
     },
 
+    // 页面跳转
+    toSongDetail(event){
+        let song = event.currentTarget.dataset.songdetail
+        wx.navigateTo({
+          url: '/pages/songDetail/songDetail?test=1',
+          success:(res)=>{
+            res.eventChannel.emit('acceptDataFromOpenerPage', { data: song })
+          }
+        })
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

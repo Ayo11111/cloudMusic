@@ -1,12 +1,12 @@
 <view class="songDetailContainer">
-  <view class="musicName">买辣椒也用劵</view>
+  <view class="musicName">{{currentSong.artists[0].name}}</view>
   <view class="circle"></view>
   <image class='handle {{isPlay&&"handleRotate"}}' src="/static/images/song/needle.png"></image>
 
 <!-- 磁盘 -->
   <view class="discContainer {{isPlay&&'disAnimition'}}">
     <image class="disc" src="/static/images/song/disc.png"></image>
-    <image class="musicImg" src="/static/images/nvsheng.jpg"></image>
+    <image class="musicImg" src="{{currentSong.album.picUrl}}"></image>
   </view>
 
   <!-- 底部控制栏 -->

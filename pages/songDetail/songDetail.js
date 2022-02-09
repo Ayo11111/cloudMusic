@@ -1,18 +1,32 @@
-// pages/songDetail/songDetail.js
+import request from '../../utils/reques'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isPlay:false
+    isPlay: false,
+    currentSong: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 路径传参，不过长度有限制，且放在路径里的参数都会变成字符串传过来
+    console.log(options.test);
 
+    // 自定义传参，无那么多限制，详情可以去看官网Api或者去recommendSong.js里是如何传参的
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      this.setData({
+        currentSong: data.data
+      })
+      // 动态的设置导航栏的标题
+      wx.setNavigationBarTitle({
+        title: data.data.name
+      })
+    })
   },
 
   /**
@@ -23,10 +37,24 @@ Page({
   },
 
   // 控制音乐是否播放
-  handleMusicPlay(){
+  handleMusicPlay() {
     this.setData({
-      isPlay:!this.data.isPlay
+      isPlay: !this.data.isPlay
     })
+    this.musicControl(this.data.isPlay)
+  },
+
+  // 控制音乐播放/暂停的功能函数
+  async musicControl(isPlay) {
+    let BackgroundAudioManager = wx.getBackgroundAudioManager()
+    if (isPlay) {
+      const { currentSong } = this.data
+      let musicUrl = await request('/song/url', { id: currentSong.id })
+      BackgroundAudioManager.title = currentSong.name
+      BackgroundAudioManager.src = musicUrl.data[0].url
+    } else {
+      BackgroundAudioManager.pause()
+    }
   },
 
   /**
