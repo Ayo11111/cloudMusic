@@ -1,4 +1,5 @@
 import request from '../../utils/reques'
+const appInstance = getApp()
 Page({
 
   /**
@@ -6,7 +7,8 @@ Page({
    */
   data: {
     isPlay: false,
-    currentSong: {}
+    currentSong: {},
+    musicId: ''
   },
 
   /**
@@ -20,14 +22,49 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
       this.setData({
-        currentSong: data.data
+        currentSong: data.data,
+        musicId: data.data.id
       })
       // 动态的设置导航栏的标题
       wx.setNavigationBarTitle({
         title: data.data.name
       })
     })
+
+    if (appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === this.data.musicId) {
+      this.setData({
+        isPlay:true
+      })
+    }
+
+    /* 
+      问题: 如果用户操作系统的控制音乐播放/暂停的按钮，页面不知道，导致页面显示是否播放的状态和真实的音乐播放状态不一致
+
+    */
+    this.BackgroundAudioManager = wx.getBackgroundAudioManager()
+
+    this.BackgroundAudioManager.onPlay(() => {
+      this.audioDataUpDate(true)
+      appInstance.globalData.musicId = this.data.musicId
+    })
+
+    this.BackgroundAudioManager.onPause(() => {
+      this.audioDataUpDate(false)
+    })
+
+    this.BackgroundAudioManager.onStop(() => {
+      this.audioDataUpDate(false)
+    })
   },
+
+  // 更新播放状态的函数
+  audioDataUpDate(isPlay) {
+    this.setData({
+      isPlay
+    })
+    appInstance.globalData.isMusicPlay = isPlay
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -46,14 +83,13 @@ Page({
 
   // 控制音乐播放/暂停的功能函数
   async musicControl(isPlay) {
-    let BackgroundAudioManager = wx.getBackgroundAudioManager()
     if (isPlay) {
       const { currentSong } = this.data
       let musicUrl = await request('/song/url', { id: currentSong.id })
-      BackgroundAudioManager.title = currentSong.name
-      BackgroundAudioManager.src = musicUrl.data[0].url
+      this.BackgroundAudioManager.title = currentSong.name
+      this.BackgroundAudioManager.src = musicUrl.data[0].url
     } else {
-      BackgroundAudioManager.pause()
+      this.BackgroundAudioManager.pause()
     }
   },
 

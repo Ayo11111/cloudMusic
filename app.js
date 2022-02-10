@@ -26,5 +26,9 @@ App({
    */
   onError: function (msg) {
 
+  },
+  globalData:{
+    isMusicPlay:false,  // 标识是否有音乐在播放
+    musicId:''  // 播放音乐的ID
   }
 })
