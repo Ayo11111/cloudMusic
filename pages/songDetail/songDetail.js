@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js'
 import request from '../../utils/reques'
 const appInstance = getApp()
 Page({
@@ -33,7 +34,7 @@ Page({
 
     if (appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === this.data.musicId) {
       this.setData({
-        isPlay:true
+        isPlay: true
       })
     }
 
@@ -55,6 +56,34 @@ Page({
     this.BackgroundAudioManager.onStop(() => {
       this.audioDataUpDate(false)
     })
+  },
+
+  // 切换歌曲按钮
+  handleSwitch(event) {
+    let type = event.target.id
+
+    // 切换歌曲之前，先关闭上一首播放歌曲
+    this.BackgroundAudioManager.stop() // 停止音乐
+
+    // 订阅来自recommendSong页面的数据(订阅必须放在回传信息之前)
+    PubSub.subscribe('toggle', (_, musicMsg) => {
+      //  这个回调才是这个函数最后的执行的地方
+      this.setData({
+        currentSong: musicMsg
+      })
+
+      wx.setNavigationBarTitle({
+        title: musicMsg.name
+      })
+
+      this.musicControl(true)
+      // 取消订阅(因为底层实现原因，订阅是会累加的，所以要取消，要不就不要放在这里)
+      PubSub.unsubscribe()
+    })
+
+    // 发布消息
+    PubSub.publish('switchType', type)
+
   },
 
   // 更新播放状态的函数
@@ -88,8 +117,9 @@ Page({
       let musicUrl = await request('/song/url', { id: currentSong.id })
       this.BackgroundAudioManager.title = currentSong.name
       this.BackgroundAudioManager.src = musicUrl.data[0].url
+
     } else {
-      this.BackgroundAudioManager.pause()
+      this.BackgroundAudioManager.pause() // 暂停音乐
     }
   },
 

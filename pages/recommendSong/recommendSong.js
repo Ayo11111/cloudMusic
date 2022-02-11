@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js'
 import request from '../../utils/reques'
 import showToast from '../../utils/selfUtils'
 Page({
@@ -8,7 +9,8 @@ Page({
     data: {
         day: '',
         month: '',
-        listData: []
+        listData: [],
+        index: 0 // 当前播放歌曲的索引
     },
 
     /**
@@ -30,24 +32,46 @@ Page({
             month: new Date().getMonth() + 1
         })
         this.getListData()
+
+        // 订阅消息
+        PubSub.subscribe('switchType', (_, type) => {
+            let { listData, index } = this.data
+            if (type === 'pre') {
+                this.setData({
+                    index: index -= 1
+                })
+
+            } else {
+                this.setData({
+                    index: index += 1
+                })
+            }
+            // console.log(index);
+            let musicMsg = listData[index]
+            PubSub.publish('toggle', musicMsg)
+        })
+
     },
 
     // 获取列表数据
     async getListData() {
         let ListData = await request('/recommend/songs')
         this.setData({
-            listData:ListData.recommend
+            listData: ListData.recommend
         })
     },
 
     // 页面跳转
-    toSongDetail(event){
-        let song = event.currentTarget.dataset.songdetail
+    toSongDetail(event) {
+        let { songdetail, index } = event.currentTarget.dataset
+        this.setData({
+            index
+        })
         wx.navigateTo({
-          url: '/pages/songDetail/songDetail?test=1',
-          success:(res)=>{
-            res.eventChannel.emit('acceptDataFromOpenerPage', { data: song })
-          }
+            url: '/pages/songDetail/songDetail?test=1',
+            success: (res) => {
+                res.eventChannel.emit('acceptDataFromOpenerPage', { data: songdetail })
+            }
         })
     },
 
@@ -62,7 +86,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        // console.log(getCurrentPages());
     },
 
     /**

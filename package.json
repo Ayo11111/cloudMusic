@@ -1,5 +1,7 @@
 {
+  "name": "cloudmusic",
+  "version": "1.0.0",
   "dependencies": {
-    "@vant/weapp": "^1.10.2"
+    "pubsub-js": "^1.9.4"
   }
 }
