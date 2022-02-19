@@ -107,17 +107,22 @@ Page({
     this.setData({
       isPlay: !this.data.isPlay
     })
-    this.musicControl(this.data.isPlay)
+    this.musicControl(this.data.isPlay,this.musicLink)
   },
 
   // 控制音乐播放/暂停的功能函数
-  async musicControl(isPlay) {
+  async musicControl(isPlay, musicLink) {
     if (isPlay) {
       const { currentSong } = this.data
-      let musicUrl = await request('/song/url', { id: currentSong.id })
-      this.BackgroundAudioManager.title = currentSong.name
-      this.BackgroundAudioManager.src = musicUrl.data[0].url
+      // 性能优化，通过传参的方式来控制是否请求接口
+      if (!musicLink) {
+        let musicUrl = await request('/song/url', { id: currentSong.id })
+        musicLink = musicUrl.data[0].url
+        this.musicLink = musicLink
+      }
 
+      this.BackgroundAudioManager.title = currentSong.name
+      this.BackgroundAudioManager.src = musicLink
     } else {
       this.BackgroundAudioManager.pause() // 暂停音乐
     }

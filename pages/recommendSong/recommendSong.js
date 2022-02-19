@@ -37,11 +37,13 @@ Page({
         PubSub.subscribe('switchType', (_, type) => {
             let { listData, index } = this.data
             if (type === 'pre') {
+                index === 0 && (index = listData.length)
                 this.setData({
                     index: index -= 1
                 })
 
             } else {
+                index === listData.length - 1 && (index = -1)
                 this.setData({
                     index: index += 1
                 })
