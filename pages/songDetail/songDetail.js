@@ -1,4 +1,5 @@
 import request from '../../utils/reques'
+import moment from 'moment'
 Page({
 
   /**
@@ -6,7 +7,9 @@ Page({
    */
   data: {
     isPlay: false,
-    currentSong: {}
+    currentSong: {},
+    durationTime: '00:00',
+    currentTime: '00:00'
   },
 
   /**
@@ -19,8 +22,11 @@ Page({
     // 自定义传参，无那么多限制，详情可以去看官网Api或者去recommendSong.js里是如何传参的
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      console.log(data);
+      let durtationTime = data.data.duration
       this.setData({
-        currentSong: data.data
+        currentSong: data.data,
+        durtationTime
       })
       // 动态的设置导航栏的标题
       wx.setNavigationBarTitle({
