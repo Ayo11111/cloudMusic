@@ -1,5 +1,6 @@
 import PubSub from 'pubsub-js'
 import request from '../../utils/reques'
+import moment from 'moment'
 const appInstance = getApp()
 Page({
 
@@ -9,7 +10,9 @@ Page({
   data: {
     isPlay: false,
     currentSong: {},
-    musicId: ''
+    musicId: '',
+    currentTime: '00:00',
+    durationTime: '00:00'
   },
 
   /**
@@ -22,9 +25,11 @@ Page({
     // 自定义传参，无那么多限制，详情可以去看官网Api或者去recommendSong.js里是如何传参的
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
+      let durationTime = moment(data.data.duration).format('mm:ss')
       this.setData({
         currentSong: data.data,
-        musicId: data.data.id
+        musicId: data.data.id,
+        durationTime
       })
       // 动态的设置导航栏的标题
       wx.setNavigationBarTitle({
@@ -56,6 +61,14 @@ Page({
     this.BackgroundAudioManager.onStop(() => {
       this.audioDataUpDate(false)
     })
+
+    this.BackgroundAudioManager.onTimeUpdate(() => {
+      console.log(this.BackgroundAudioManager.currentTime);
+      let currentTime = moment(this.BackgroundAudioManager.currentTime * 1000).format('mm:ss')
+      this.setData({
+        currentTime
+      })
+    })
   },
 
   // 切换歌曲按钮
@@ -67,9 +80,11 @@ Page({
 
     // 订阅来自recommendSong页面的数据(订阅必须放在回传信息之前)
     PubSub.subscribe('toggle', (_, musicMsg) => {
+      let durationTime = moment(musicMsg.duration).format('mm:ss')
       //  这个回调才是这个函数最后的执行的地方
       this.setData({
-        currentSong: musicMsg
+        currentSong: musicMsg,
+        durationTime
       })
 
       wx.setNavigationBarTitle({
@@ -107,7 +122,7 @@ Page({
     this.setData({
       isPlay: !this.data.isPlay
     })
-    this.musicControl(this.data.isPlay,this.musicLink)
+    this.musicControl(this.data.isPlay, this.musicLink)
   },
 
   // 控制音乐播放/暂停的功能函数
