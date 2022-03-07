@@ -12,7 +12,8 @@ Page({
     currentSong: {},
     musicId: '',
     currentTime: '00:00',
-    durationTime: '00:00'
+    durationTime: '00:00',
+    currentWidth: 0
   },
 
   /**
@@ -62,11 +63,23 @@ Page({
       this.audioDataUpDate(false)
     })
 
-    this.BackgroundAudioManager.onTimeUpdate(() => {
-      console.log(this.BackgroundAudioManager.currentTime);
-      let currentTime = moment(this.BackgroundAudioManager.currentTime * 1000).format('mm:ss')
+    // 当音频结束以后
+    this.BackgroundAudioManager.onEnded(() => {
+      // 发布消息，随后走播放流程
+      PubSub.publish('switchType', 'next')
+      this.audioDataUpDate(true)
       this.setData({
-        currentTime
+        currentTime: '00:00',
+        currentWidth: 0
+      })
+    })
+
+    this.BackgroundAudioManager.onTimeUpdate(() => {
+      let currentTime = moment(this.BackgroundAudioManager.currentTime * 1000).format('mm:ss')
+      let currentWidth = this.BackgroundAudioManager.currentTime / this.BackgroundAudioManager.duration * 450
+      this.setData({
+        currentTime,
+        currentWidth
       })
     })
   },
