@@ -19,6 +19,12 @@ Page({
         this.requestFun()
     },
 
+    toRecommendSong(){
+        wx.navigateTo({
+          url: '/pages/recommendSong/recommendSong',
+        })
+    },
+
     // 发送请求的接口
     async requestFun() {
         // 轮播图请求接口

@@ -3,7 +3,7 @@
   <view class="circle"></view>
   <image class='handle {{isPlay&&"handleRotate"}}' src="/static/images/song/needle.png"></image>
 
-<!-- 磁盘 -->
+  <!-- 磁盘 -->
   <view class="discContainer {{isPlay&&'disAnimition'}}">
     <image class="disc" src="/static/images/song/disc.png"></image>
     <image class="musicImg" src="{{currentSong.album.picUrl}}"></image>
@@ -11,15 +11,15 @@
 
   <!-- 进度条控制区域 -->
   <view class="progressControl">
-     <text>0:00</text>
-     <!-- 总进度条 -->
+    <text>{{currentTime}}</text>
+    <!-- 总进度条 -->
     <view class="barControl">
       <!-- 实时进度条 -->
-      <view class="currentTime-Bar">
+      <view class="currentTime-Bar" style="width:{{currentWidth + 'rpx'}}">
         <view class="audio-circle"></view>
       </view>
     </view>
-    <text>3:00</text>
+    <text>{{durationTime}}</text>
   </view>
 
   <!-- 底部控制栏 -->
