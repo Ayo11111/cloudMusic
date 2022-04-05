@@ -51,8 +51,39 @@
   width:   50%;
   height: 70rpx;
   line-height: 70rpx;
+  margin-bottom: 10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hotItem .order {
   margin:0 10rpx;
+}
+
+.hotItem .iconImage{
+  width: 35rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+}
+
+/* 搜索内容展示部分 */
+.searchContent {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 24rpx;
+  color: #d43c33;
+  border-bottom:1rpx solid #eee;
+}
+
+.searchItem {
+  display: flex;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.searchName {
+  flex: 1;
+  margin-left: 10rpx;
+  border-bottom: 1rpx solid #eee;
 }
