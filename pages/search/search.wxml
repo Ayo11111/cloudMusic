@@ -22,6 +22,15 @@
   </block>
 
   <block wx:else>
+    <!-- 搜索历史 -->
+    <view class="history">
+      <view class="title">历史</view>
+      <view class="historyItem">许嵩</view>
+      
+      <!-- 删除区域 -->
+      <view class="iconfont icon-shanchu delete"></view>
+    </view>
+
     <!-- 热搜榜 -->
     <view class="hotContainer">
       <view class="title">热搜榜</view>

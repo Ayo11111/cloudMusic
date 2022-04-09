@@ -17,7 +17,6 @@ Page({
   async getInitPlaceholder() {
     const placeholderData = await request('/search/default')
     const hotListData = await request('/search/hot/detail')
-    console.log(hotListData);
     this.setData({
       placeholderContent: placeholderData.data.showKeyword,
       hotList: hotListData.data
