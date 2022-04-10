@@ -1,4 +1,4 @@
-.searchContainer{
+.searchContainer {
   padding-left: 20rpx;
 }
 
@@ -11,9 +11,15 @@
 
 .searchInput {
   position: relative;
-  flex:1;
+  flex: 1;
   border-radius: 30rpx;
+}
 
+.searchInput .searchDeleteClass {
+  position: absolute;
+  right: 1rpx;
+  bottom: 1rpx;
+  z-index: 10;
 }
 
 .cancel {
@@ -31,9 +37,9 @@
   height: 60rpx;
 }
 
-.placeholder{
+.placeholder {
   /* color: #d43c33; */
-  font-size: 28rpx ;
+  font-size: 28rpx;
 }
 
 /* 热搜榜部分 */
@@ -48,7 +54,7 @@
 }
 
 .hotItem {
-  width:   50%;
+  width: 50%;
   height: 70rpx;
   line-height: 70rpx;
   margin-bottom: 10rpx;
@@ -58,10 +64,10 @@
 }
 
 .hotItem .order {
-  margin:0 10rpx;
+  margin: 0 10rpx;
 }
 
-.hotItem .iconImage{
+.hotItem .iconImage {
   width: 35rpx;
   height: 20rpx;
   margin-left: 10rpx;
@@ -73,7 +79,7 @@
   line-height: 80rpx;
   font-size: 24rpx;
   color: #d43c33;
-  border-bottom:1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
 }
 
 .searchItem {
@@ -94,7 +100,7 @@
   display: flex;
   flex-wrap: wrap;
   line-height: 50rpx;
-  margin:20rpx 0;
+  margin: 20rpx 0;
 }
 
 .history .title {
@@ -106,7 +112,7 @@
   height: 50rpx;
   font-size: 26rpx;
   background: #ededed;
-  padding:0 30rpx;
+  padding: 0 30rpx;
   margin-left: 20rpx;
   margin-bottom: 20rpx;
   border-radius: 20rpx;

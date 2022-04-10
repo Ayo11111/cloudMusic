@@ -11,6 +11,7 @@ Page({
     hotList: [],
     sendData: '', // 搜索框发送接口数据
     searchList: [],
+    historyList:[] // 存放历史记录信息的数组
   },
 
   // 初始化placeholder数据
@@ -46,19 +47,69 @@ Page({
     }, 500)
   },
 
+  // 删除历史记录图标回调
+  deleteHistory() {
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认删除历史记录吗',
+      success (res) {
+        if (res.confirm) {
+          that.setData({
+            historyList:[]
+          })
+          wx.removeStorageSync('historyList')
+        }
+      }
+    })
+  },
+
+  // 删除搜索内容事件
+  deleteSearchContent() {
+    this.setData({
+      sendData:'',
+      searchList:[]
+    })
+  },
+
+  // 从本地缓存拿到搜索历史信息
+  getHistoryList() {
+    let historyList = wx.getStorageSync('historyList')
+    if (historyList) {
+      this.setData({
+        historyList
+      })
+    }
+  },
+
   // 搜索框模糊搜索接口请求
   async getSearchList() {
-    const searchListData = await request('/search', { keywords: this.data.sendData, limit: 10 })
+    let {historyList,sendData} = this.data
+    const searchListData = await request('/search', { keywords:sendData, limit: 10 })
     this.setData({
       searchList: searchListData.result.songs
     })
+
+    if (historyList.indexOf(sendData) !== -1) {
+      historyList.splice(historyList.indexOf(sendData),1)
+    }
+    historyList.unshift(sendData)
+    this.setData({
+      historyList
+    })
+    
+    wx.setStorageSync('historyList', historyList)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 初始化placeholder的内容
     this.getInitPlaceholder()
+
+    // 初始化搜索历史的内容
+    this.getHistoryList()
   },
 
   /**
