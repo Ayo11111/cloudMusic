@@ -21,6 +21,13 @@ Page({
         this.getVideoGroupList()
     },
 
+    // 跳转搜索页
+    toSearch() {
+        wx.navigateTo({
+          url: '/pages/search/search',
+        })
+    },
+
     // 点击播放和继续播放的回调
     handlePlay(event) {
         /* 单例模式：
