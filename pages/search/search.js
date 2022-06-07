@@ -11,7 +11,7 @@ Page({
     hotList: [],
     sendData: '', // 搜索框发送接口数据
     searchList: [],
-    historyList:[] // 存放历史记录信息的数组
+    historyList:[] // 存放历史记录信息的数组1
   },
 
   // 初始化placeholder数据
