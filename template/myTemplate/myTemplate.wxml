@@ -1,0 +1,9 @@
+<template name="testTemplate">
+    <view class="title">我是代码模板，你知道吗</view>
+    
+    <view>姓名：{{person.userName}}</view>
+    <view>年龄：{{person.age}}</view>
+    
+    <!-- <view>姓名：{{userName}}</view>
+    <view>年龄：{{age}}</view> -->
+</template>
