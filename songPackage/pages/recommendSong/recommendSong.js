@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js'
-import request from '../../utils/reques'
-import showToast from '../../utils/selfUtils'
+import request from '../../../utils/reques'
+import showToast from '../../../utils/selfUtils'
 Page({
 
     /**
@@ -70,7 +70,7 @@ Page({
             index
         })
         wx.navigateTo({
-            url: '/pages/songDetail/songDetail?test=1',
+            url: '/songPackage/pages/songDetail/songDetail?test=1',
             success: (res) => {
                 res.eventChannel.emit('acceptDataFromOpenerPage', { data: songdetail })
             }

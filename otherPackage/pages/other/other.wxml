@@ -5,3 +5,5 @@
 
 <template is='testTemplate' data="{{person}}"></template>
 <!-- <template is='testTemplate' data="{{...person}}"></template> -->
+
+<button bindtap="getOpenId">获取openID</button>

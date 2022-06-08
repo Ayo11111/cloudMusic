@@ -1,5 +1,5 @@
 import PubSub from 'pubsub-js'
-import request from '../../utils/reques'
+import request from '../../../utils/reques'
 import moment from 'moment'
 const appInstance = getApp()
 Page({

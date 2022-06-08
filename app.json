@@ -1,10 +1,7 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/other/other",
         "pages/search/search",
-        "pages/recommendSong/recommendSong",
-        "pages/songDetail/songDetail",
         "pages/video/video",
         "pages/personal/personal",
         "pages/login/login"
@@ -43,5 +40,20 @@
                 "selectedIconPath": "/static/images/tabs/tab-my-current.png"
             }
         ]
-    }
+    },
+    "subpackages": [
+        {
+            "root": "otherPackage",
+            "pages": [
+                "pages/other/other"
+            ]
+        },
+        {
+            "root": "songPackage",
+            "pages": [
+                "pages/recommendSong/recommendSong",
+                "pages/songDetail/songDetail"
+            ]
+        }
+    ]
 }
