@@ -1,3 +1,9 @@
+@import '/static/iconfont/iconfont.wxss';
+
+page {
+    height: 100%;
+}
+
 /* 头部区域 */
 .recommendSongContaier .header {
     position: relative;
@@ -20,32 +26,32 @@
     color: white;
 }
 
-.header .date .day{
+.header .date .day {
     font-size: 50rpx;
 }
 
 /* 列表区域 */
-.listContainer{
+.listContainer {
     position: relative;
     top: -20rpx;
     border-radius: 30rpx;
-    padding:0 20rpx;
+    padding: 0 20rpx;
     background-color: #fff;
 }
 
-.listHeader{
+.listHeader {
     height: 80rpx;
     line-height: 80rpx;
 }
 
-.choseMore{
+.choseMore {
     float: right;
 }
 
 .scrollItem {
     display: flex;
     height: 80rpx;
-    margin:20rpx 0;
+    margin: 20rpx 0;
 }
 
 .listScroll {
@@ -72,7 +78,7 @@
     text-overflow: ellipsis;
 }
 
-.scrollItem .iconfont{
+.scrollItem .iconfont {
     position: absolute;
     right: 0;
     line-height: 80rpx;

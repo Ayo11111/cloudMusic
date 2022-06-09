@@ -50,10 +50,18 @@
         },
         {
             "root": "songPackage",
+            "name": "song",
             "pages": [
                 "pages/recommendSong/recommendSong",
                 "pages/songDetail/songDetail"
-            ]
+            ],
+            "independent": true
         }
-    ]
+    ],
+    "preloadRule": {
+        "pages/index/index": {
+            "network": "all",
+            "packages": ["otherPackage","song"]
+        }
+    }
 }

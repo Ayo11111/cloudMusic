@@ -1,3 +1,9 @@
+@import '/static/iconfont/iconfont.wxss';
+
+page {
+  height: 100%;
+}
+
 /* 顶部区域 */
 .songDetailContainer {
   display: flex;
@@ -96,7 +102,7 @@
 }
 
 /* 进度条区域 */
-.progressControl{
+.progressControl {
   position: absolute;
   bottom: 200rpx;
   width: 640rpx;
@@ -104,6 +110,7 @@
   line-height: 80rpx;
   display: flex;
 }
+
 .barControl {
   position: relative;
   width: 450rpx;
@@ -111,7 +118,8 @@
   background: rgba(0, 0, 0, .4);
   margin: auto;
 }
-.currentTime-Bar{
+
+.currentTime-Bar {
   position: absolute;
   top: 0;
   left: 0;
@@ -119,7 +127,8 @@
   height: 4rpx;
   background: red;
 }
-.audio-circle{
+
+.audio-circle {
   position: absolute;
   right: -12rpx;
   top: -4rpx;
