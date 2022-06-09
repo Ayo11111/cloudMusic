@@ -9,8 +9,7 @@ Page({
     data: {
         day: '',
         month: '',
-        listData: [],
-        index: 0 // 当前播放歌曲的索引
+        listData: []
     },
 
     /**
@@ -32,43 +31,19 @@ Page({
             month: new Date().getMonth() + 1
         })
         this.getListData()
-
-        // 订阅消息
-        PubSub.subscribe('switchType', (_, type) => {
-            let { listData, index } = this.data
-            if (type === 'pre') {
-                index === 0 && (index = listData.length)
-                this.setData({
-                    index: index -= 1
-                })
-
-            } else {
-                index === listData.length - 1 && (index = -1)
-                this.setData({
-                    index: index += 1
-                })
-            }
-            // console.log(index);
-            let musicMsg = listData[index]
-            PubSub.publish('toggle', musicMsg)
-        })
-
     },
 
     // 获取列表数据
     async getListData() {
         let ListData = await request('/recommend/songs')
         this.setData({
-            listData: ListData.recommend
+            listData:ListData.recommend
         })
     },
 
     // 页面跳转
-    toSongDetail(event) {
-        let { songdetail, index } = event.currentTarget.dataset
-        this.setData({
-            index
-        })
+    toSongDetail(event){
+        let song = event.currentTarget.dataset.songdetail
         wx.navigateTo({
             url: '/songPackage/pages/songDetail/songDetail?test=1',
             success: (res) => {
@@ -88,7 +63,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        // console.log(getCurrentPages());
+
     },
 
     /**

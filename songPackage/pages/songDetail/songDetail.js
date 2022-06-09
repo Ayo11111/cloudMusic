@@ -114,15 +114,6 @@ Page({
 
   },
 
-  // 更新播放状态的函数
-  audioDataUpDate(isPlay) {
-    this.setData({
-      isPlay
-    })
-    appInstance.globalData.isMusicPlay = isPlay
-  },
-
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -139,20 +130,15 @@ Page({
   },
 
   // 控制音乐播放/暂停的功能函数
-  async musicControl(isPlay, musicLink) {
+  async musicControl(isPlay) {
+    let BackgroundAudioManager = wx.getBackgroundAudioManager()
     if (isPlay) {
       const { currentSong } = this.data
-      // 性能优化，通过传参的方式来控制是否请求接口
-      if (!musicLink) {
-        let musicUrl = await request('/song/url', { id: currentSong.id })
-        musicLink = musicUrl.data[0].url
-        this.musicLink = musicLink
-      }
-
-      this.BackgroundAudioManager.title = currentSong.name
-      this.BackgroundAudioManager.src = musicLink
+      let musicUrl = await request('/song/url', { id: currentSong.id })
+      BackgroundAudioManager.title = currentSong.name
+      BackgroundAudioManager.src = musicUrl.data[0].url
     } else {
-      this.BackgroundAudioManager.pause() // 暂停音乐
+      BackgroundAudioManager.pause()
     }
   },
 

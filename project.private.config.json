@@ -1,5 +1,4 @@
 {
-    "setting": {},
     "condition": {
         "plugin": {
             "list": []
@@ -11,7 +10,15 @@
             "list": []
         },
         "miniprogram": {
-            "list": []
+            "list": [
+                {
+                    "name": "",
+                    "pathName": "pages/video/video",
+                    "query": "",
+                    "scene": null,
+                    "launchMode": "default"
+                }
+            ]
         }
     }
 }
